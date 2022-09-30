@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+
 function Form(props) {
   const [person, setPerson] = useState(
      {
@@ -11,18 +12,32 @@ function Form(props) {
 
   function submitForm() {
     props.handleSubmit(person);
-    setPerson({name: '', job: ''});
+    setPerson({id: '', name: '', job: ''});
   }
 
+  // function makeid() {
+  //   const result = '';
+  //   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  //   var charactersLength = 3;
+  //    result += characters.charAt(Math.floor(Math.random() * 3));
+   
+  //  return result;
+  // }
+
+
   function handleChange(event) {
+    // var randTag = makeid();
+    const randID = Math.floor(Math.random() * 100).toString();
+    // randTag = randID + randTag;
+    // randID += randNum;
     const { name, value } = event.target;
     if (name === "job")
       setPerson(
-         {name: person['name'], job: value}
+         {id: randID, name: person['name'], job: value}
       );
     else     
        setPerson(
-         {name: value, job: person['job']}   
+         {id: randID, name: value, job: person['job']}   
        );
   }
   return (

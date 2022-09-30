@@ -26,12 +26,7 @@ function MyApp() {
   }
 }
 
-function updateList(person) { 
-  makePostCall(person).then( result => {
-  if (result && result.status === 201)
-     setCharacters([...characters, person] );
-  });
-}
+
 
 async function fetchAll(){
    try {
@@ -62,9 +57,12 @@ async function fetchAll(){
       setCharacters(updated);
     }
 
-    function updateList(person) {
-      setCharacters([...characters, person]);
-    }
+    function updateList(person) { 
+      makePostCall(person).then( result => {
+      if (result && result.status === 201)
+         setCharacters([...characters, person] );
+      });
+   }
 }
 
 
