@@ -26,6 +26,17 @@ function MyApp() {
   }
 }
 
+async function makeDeleteCall(index) {
+   try {
+     return await axios.delete(
+       `http://localhost:5000/users/${characters[index].id}`
+     );
+   } catch (error) {
+     //just logging errors to the console
+     console.log(error);
+     return false;
+   }
+ }
 
 
 async function fetchAll(){
@@ -50,18 +61,26 @@ async function fetchAll(){
 
   
 
-  function removeOneCharacter (index) {
-    const updated = characters.filter((character, i) => {
-        return i !== index
-      });
-      setCharacters(updated);
-    }
+  function removeOneCharacter(index) {
+   makeDeleteCall(index).then((result) => {
+     if (result && result.status === 204) {
+       const updated = characters.filter((character, i) => {
+         return i !== index;
+       });
+       setCharacters(updated);
+     } else if (result.status === 404) {
+       console.log("Resouce not found. Object not deleted");
+     }
+   });
+ }
 
     function updateList(person) { 
       makePostCall(person).then( result => {
       if (result && result.status === 201)
          setCharacters([...characters, person] );
       });
+
+
    }
 }
 
