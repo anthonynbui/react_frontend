@@ -15,29 +15,19 @@ function Form(props) {
     setPerson({id: '', name: '', job: ''});
   }
 
-  // function makeid() {
-  //   const result = '';
-  //   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  //   var charactersLength = 3;
-  //    result += characters.charAt(Math.floor(Math.random() * 3));
-   
-  //  return result;
-  // }
+
 
 
   function handleChange(event) {
-    // var randTag = makeid();
-    const randID = Math.floor(Math.random() * 100).toString();
-    // randTag = randID + randTag;
-    // randID += randNum;
-    const { name, value } = event.target;
+
+    const {id, name, value } = event.target;
     if (name === "job")
       setPerson(
-         {id: randID, name: person['name'], job: value}
+         {id: id, name: person['name'], job: value}
       );
     else     
        setPerson(
-         {id: randID, name: value, job: person['job']}   
+         {id: id, name: value, job: person['job']}   
        );
   }
   return (
